@@ -1,0 +1,20 @@
+{% include 'home.html' %} {% block content %}
+<div class="container">
+  <div class="box has-background-black">
+    <div class="card">
+      <div class="card-content has-background-grey">
+        <div class="media">
+          <div class="media-left">
+            <figure class="image is-48*48"><img src="{{thumbnail}}" /></figure>
+          </div>
+          <div class="media-content">
+            <p class="title is-size-3 has-text-success-light">{{title}}</p>
+            <p class="title is-size-6 has-text-primary-light">{{response}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a class="button has-background-primary" href="/">Go Back</a>
+</div>
+{% endblock %}

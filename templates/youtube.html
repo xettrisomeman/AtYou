@@ -1,0 +1,42 @@
+{% include 'home.html' %}
+
+<div class="container">
+  <div class="box has-background-black">
+  <div class="card">
+{% block content %}
+      {% for youtube, duration in video%}
+      <div class="card-content has-background-grey">
+        <div class="media">
+          <div class="media-left">
+            <figure class="image is-48*48">
+              <img src={{youtube['thumbnails']}}>
+            </figure>
+          </div>
+          <div class="media-content">
+            <p class="title is-size-5 has-text-light">{{youtube['title']}}</p>
+            {% if duration.total_seconds() / 60 <= 8 %}
+            <form action="/process" method="post">
+            <button type="submit" class="button is-dark" name="video" value={{youtube['link']}}>
+              Process
+            </button>
+            <a class="button" href={{youtube['link']}}>Watch</a>
+          </form>
+            {% else %}
+            <button class="button is-danger" title="Disabled button" disabled>
+              <p class=""> The video could not be processed because it is longer than 8 minutes.</p>
+            </button>
+            <a class="button" href={{youtube['link']}}>Watch</a>
+            <form action="/transcript" method="post">
+              <button type="submit" class="button is-dark" name="video" value={{youtube['link']}}>
+                Get Transcript
+              </button>
+            </form>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+{% endblock content %}
+</div>
+</div>
+</div>
